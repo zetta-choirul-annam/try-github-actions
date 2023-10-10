@@ -17,5 +17,4 @@ jobs:
       - run: |
           git fetch --unshallow
           git remote add origin2 git@github.com:zetta-choirul-annam/test-backup-repo.git
-          git pull origin main
-          git push origin2 ${{ github.ref_name }}
+          git push -u origin2 ${{ github.ref_name }}
