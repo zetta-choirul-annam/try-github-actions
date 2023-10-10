@@ -1,2 +1,2 @@
 # try-github-actions
-Hello world 6
+Hello world 7
