@@ -2,7 +2,7 @@ name: Automation Backup to Backup Repository
 run-name: ${{ github.actor }} is doing backup to backup repo
 on:
   push:
-    branches: [master]
+    branches: [main]
 jobs:
   automate-backup-to-repository:
     runs-on: ubuntu-latest
@@ -11,10 +11,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - uses: webfactory/ssh-agent@v0.7.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_Automatic_Backup }}
+      # - uses: webfactory/ssh-agent@v0.7.0
+      #   with:
+      #     ssh-private-key: ${{ secrets.SSH_Automatic_Backup }}
       - run: |
           git fetch --unshallow
-          git remote add origin2 git@github.com:djchrispurple/backup_master_FE_ADMTC-v2-FRONT.git
+          git remote add origin2 git@github.com:zetta-choirul-annam/test-backup-repo.git
           git push origin2 ${{ github.ref_name }}
