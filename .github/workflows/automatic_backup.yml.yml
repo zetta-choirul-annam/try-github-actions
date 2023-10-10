@@ -15,9 +15,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_Automatic_Backup }}
       - run: |
-          git config --global pull.rebase true
           git fetch --unshallow
           git remote add origin2 git@github.com:zetta-choirul-annam/test-backup-repo.git
-          git pull origin2 main
-          git rebase --skip
           git push origin2 ${{ github.ref_name }}
