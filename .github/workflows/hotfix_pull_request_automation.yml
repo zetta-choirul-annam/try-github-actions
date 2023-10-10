@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is doing create automation pull request
 on:
   push:
     branches:
-      - 'hotfix/*'  # This pattern matches branches with 'hotfix/' prefix
+      - 'hotfix/**'  # This pattern matches branches with 'hotfix/' prefix
 jobs:
   create_pull_request:
     runs-on: ubuntu-latest
