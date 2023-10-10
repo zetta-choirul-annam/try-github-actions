@@ -19,10 +19,10 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_Automatic_Backup }}
     - name: Create Pull Request
       env:
-        GH_TOKEN: ${{ env.token }}
+        GH_TOKEN: ${{ secrets.TOKEN }}
       run: |
         if [ "${{ github.event_name }}" == "push" ]; then
-          branch_name=$(echo "${{ github.ref }}" | awk -F'/' '{print $3}')
+          branch_name=$(echo "${{ github.ref }}")
           echo "Creating a pull request for branch $branch_name..."
           
           pr_title="Automated Pull Request for $branch_name to dev_production"
