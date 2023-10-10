@@ -22,7 +22,7 @@ jobs:
         GH_TOKEN: ${{ secrets.TOKEN }}
       run: |
         if [ "${{ github.event_name }}" == "push" ]; then
-          branch_name=$(echo "${{ github.ref }}")
+          branch_name=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           current_datetime=$(date +"%Y%m%d %H:%M")
           echo "Creating a pull request for branch $branch_name..."
           pr_title="Automated Pull Request for $branch_name - $current_datetime"
