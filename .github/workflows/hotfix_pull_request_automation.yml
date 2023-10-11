@@ -21,12 +21,12 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.TOKEN }}
       run: |
-        echo 
+        git fetch origin dev_staging:dev_staging
         if [ "${{ github.event_name }}" == "push" ]; then
           branch_name=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           current_datetime=$(date +"%Y%m%d %H:%M")
           echo "Creating a pull request for branch $branch_name..."
           pr_title="Automated Pull Request for $branch_name - $current_datetime"
-          pr_body="This pull request was automatically created when branch $branch_name was pushed.\n###List of changes:\n$(git log --pretty=format:'- %s' origin/dev_staging..$branch_name)"
+          pr_body="This pull request was automatically created when branch $branch_name was pushed.\n###List of changes:\n$(git log --pretty=format:'- %s' dev_staging..$branch_name)"
           gh pr create --base dev_production --head "$branch_name" --title "$pr_title" --body "$pr_body"
         fi
