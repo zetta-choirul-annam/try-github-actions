@@ -32,8 +32,7 @@ jobs:
           IFS='@@@'
           read -a strarr <<< "$(git log --pretty=format:'@@@%h %s (%an)' dev_staging..$branch_name)" 
           for commit_message in "${strarr[@]}"; do
-            echo "$commit_message"
-            pr_body="$pr_body<br/>$commit_message"
+            pr_body="$pr_body<br/>- $commit_message"
           done
           gh pr create --base dev_production --head "$branch_name" --title "$pr_title" --body "$pr_body"
         fi
