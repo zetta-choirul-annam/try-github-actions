@@ -29,7 +29,6 @@ jobs:
           pr_title="Automated Pull Request for $branch_name - $current_datetime"
           pr_body="This pull request was automatically created when branch $branch_name was pushed.<h3>List of changes:</h3>"
           # Loop through commit messages
-          IFS=$'<br/>'
           for commit_message in $(git log --pretty=format:'- %h %s (%an)' dev_staging..$branch_name); do
             pr_body="$pr_body<br/>$commit_message"
           done
